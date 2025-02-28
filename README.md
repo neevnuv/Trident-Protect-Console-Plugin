@@ -1,4 +1,4 @@
-# OpenShift Console Plugin Template
+# Trident Protect Console Plugin
 
 This project is a minimal template for writing a new OpenShift Console dynamic
 plugin.
