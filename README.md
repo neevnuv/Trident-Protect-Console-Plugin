@@ -1,219 +1,88 @@
 # Trident Protect Console Plugin
 
-This project is a minimal template for writing a new OpenShift Console dynamic
-plugin.
+This plugin enhances the OpenShift Console by integrating NetApp's Trident Protect, facilitating seamless data protection management for container applications and virtual machines (VMs) within OpenShift.
 
-[Dynamic plugins](https://github.com/openshift/console/tree/master/frontend/packages/console-dynamic-plugin-sdk)
-allow you to extend the
-[OpenShift UI](https://github.com/openshift/console)
-at runtime, adding custom pages and other extensions. They are based on
-[webpack module federation](https://webpack.js.org/concepts/module-federation/).
-Plugins are registered with console using the `ConsolePlugin` custom resource
-and enabled in the console operator config by a cluster administrator.
+## What is Trident Protect?
 
-Using the latest `v1` API version of `ConsolePlugin` CRD, requires OpenShift 4.12
-and higher. For using old `v1alpha1` API version us OpenShift version 4.10 or 4.11.
+Trident Protect, developed by NetApp, offers robust data protection solutions tailored for containerized applications and VMs. It enables users to efficiently perform snapshot and backup operations, ensuring data integrity and availability in dynamic environments. For comprehensive details, refer to the [NetApp Trident Protect documentation](https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_trident_protect.html).
 
-For an example of a plugin that works with OpenShift 4.11, see the `release-4.11` branch.
-For a plugin that works with OpenShift 4.10, see the `release-4.10` branch.
+## Plugin Purpose
 
-[Node.js](https://nodejs.org/en/) and [yarn](https://yarnpkg.com) are required
-to build and run the example. To run OpenShift console in a container, either
-[Docker](https://www.docker.com) or [podman 3.2.0+](https://podman.io) and
-[oc](https://console.redhat.com/openshift/downloads) are required.
+The Trident Protect Console Plugin streamlines the use of Trident Protect within the OpenShift Container Platform. By integrating directly into the OpenShift Console, it provides an intuitive interface for managing data protection tasks, allowing teams to:
 
-## Getting started
+- Easily create and manage snapshots and backups for container applications.
+- Efficiently handle backup and restore operations for VMs deployed on OpenShift Virtualization.
 
-After cloning this repo, you should update the plugin metadata such as the
-plugin name in the `consolePlugin` declaration of [package.json](package.json).
+This integration simplifies workflows, reduces operational complexity, and enhances data protection strategies.
 
-```json
-"consolePlugin": {
-  "name": "console-plugin-template",
-  "version": "0.0.1",
-  "displayName": "My Plugin",
-  "description": "Enjoy this shiny, new console plugin!",
-  "exposedModules": {
-    "ExamplePage": "./components/ExamplePage"
-  },
-  "dependencies": {
-    "@console/pluginAPI": "*"
-  }
-}
-```
+## Getting Started
 
-The template adds a single example page in the Home navigation section. The
-extension is declared in the [console-extensions.json](console-extensions.json)
-file and the React component is declared in
-[src/components/ExamplePage.tsx](src/components/ExamplePage.tsx).
+### Prerequisites
 
-You can run the plugin using a local development environment or build an image
-to deploy it to a cluster.
+- **Node.js** and **yarn**: Required for building and running the plugin.
+- **Container runtime**: Either Docker or Podman 3.2.0+ is necessary for running the OpenShift console in a container.
+- **oc CLI**: Command-line tool for interacting with OpenShift clusters.
 
-## Development
+### Installation
 
-### Option 1: Local
-
-In one terminal window, run:
-
-1. `yarn install`
-2. `yarn run start`
-
-In another terminal window, run:
-
-1. `oc login` (requires [oc](https://console.redhat.com/openshift/downloads) and an [OpenShift cluster](https://console.redhat.com/openshift/create))
-2. `yarn run start-console` (requires [Docker](https://www.docker.com) or [podman 3.2.0+](https://podman.io))
-
-This will run the OpenShift console in a container connected to the cluster
-you've logged into. The plugin HTTP server runs on port 9001 with CORS enabled.
-Navigate to <http://localhost:9000/example> to see the running plugin.
-
-#### Running start-console with Apple silicon and podman
-
-If you are using podman on a Mac with Apple silicon, `yarn run start-console`
-might fail since it runs an amd64 image. You can workaround the problem with
-[qemu-user-static](https://github.com/multiarch/qemu-user-static) by running
-these commands:
-
-```bash
-podman machine ssh
-sudo -i
-rpm-ostree install qemu-user-static
-systemctl reboot
-```
-
-### Option 2: Docker + VSCode Remote Container
-
-Make sure the
-[Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-extension is installed. This method uses Docker Compose where one container is
-the OpenShift console and the second container is the plugin. It requires that
-you have access to an existing OpenShift cluster. After the initial build, the
-cached containers will help you start developing in seconds.
-
-1. Create a `dev.env` file inside the `.devcontainer` folder with the correct values for your cluster:
-
-```bash
-OC_PLUGIN_NAME=console-plugin-template
-OC_URL=https://api.example.com:6443
-OC_USER=kubeadmin
-OC_PASS=<password>
-```
-
-2. `(Ctrl+Shift+P) => Remote Containers: Open Folder in Container...`
-3. `yarn run start`
-4. Navigate to <http://localhost:9000/example>
-
-## Docker image
-
-Before you can deploy your plugin on a cluster, you must build an image and
-push it to an image registry.
-
-1. Build the image:
-
-   ```sh
-   docker build -t quay.io/my-repository/my-plugin:latest .
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/neevnuv/Trident-Protect-Console-Plugin.git
+   cd Trident-Protect-Console-Plugin
    ```
 
-2. Run the image:
 
-   ```sh
-   docker run -it --rm -d -p 9001:80 quay.io/my-repository/my-plugin:latest
+2. **Install Dependencies**:
+   ```bash
+   yarn install
    ```
 
-3. Push the image:
 
-   ```sh
-   docker push quay.io/my-repository/my-plugin:latest
+3. **Start the Plugin Server**:
+   ```bash
+   yarn run start
    ```
 
-NOTE: If you have a Mac with Apple silicon, you will need to add the flag
-`--platform=linux/amd64` when building the image to target the correct platform
-to run in-cluster.
 
-## Deployment on cluster
+4. **Launch the OpenShift Console**:
+   In a separate terminal:
+   ```bash
+   oc login
+   yarn run start-console
+   ```
 
-A [Helm](https://helm.sh) chart is available to deploy the plugin to an OpenShift environment.
+   This command runs the OpenShift console in a container connected to your cluster.
 
-The following Helm parameters are required:
+5. **Access the Plugin**:
+   Navigate to `http://localhost:9000` in your browser. The Trident Protect features are integrated into the console interface.
 
-`plugin.image`: The location of the image containing the plugin that was previously pushed
+### Deployment on a Cluster
 
-Additional parameters can be specified if desired. Consult the chart [values](charts/openshift-console-plugin/values.yaml) file for the full set of supported parameters.
+To deploy the plugin on an OpenShift cluster:
 
-### Installing the Helm Chart
+1. **Build the Docker Image**:
+   ```bash
+   docker build -t your-repo/trident-protect-plugin:latest .
+   ```
 
-Install the chart using the name of the plugin as the Helm release name into a new namespace or an existing namespace as specified by the `plugin_console-plugin-template` parameter and providing the location of the image within the `plugin.image` parameter by using the following command:
 
-```shell
-helm upgrade -i  my-plugin charts/openshift-console-plugin -n plugin__console-plugin-template --create-namespace --set plugin.image=my-plugin-image-location
-```
+2. **Push the Image to a Registry**:
+   ```bash
+   docker push your-repo/trident-protect-plugin:latest
+   ```
 
-NOTE: When deploying on OpenShift 4.10, it is recommended to add the parameter `--set plugin.securityContext.enabled=false` which will omit configurations related to Pod Security.
 
-NOTE: When defining i18n namespace, adhere `plugin__<name-of-the-plugin>` format. The name of the plugin should be extracted from the `consolePlugin` declaration within the [package.json](package.json) file.
+3. **Deploy Using Helm**:
+4. (Haven't yet went over the helm chart, so the image might be wrong. The helm should work, but you'll have to build and push the image to your registry 😥)
+   ```bash
+   helm upgrade -i trident-protect-plugin charts/openshift-console-plugin \
+     -n trident-protect-plugin --create-namespace \
+     --set plugin.image=your-repo/trident-protect-plugin:latest
+   ```
 
-## i18n
 
-The plugin template demonstrates how you can translate messages in with [react-i18next](https://react.i18next.com/). The i18n namespace must match
-the name of the `ConsolePlugin` resource with the `plugin__` prefix to avoid
-naming conflicts. For example, the plugin template uses the
-`plugin__console-plugin-template` namespace. You can use the `useTranslation` hook
-with this namespace as follows:
+For detailed deployment instructions, refer to the [OpenShift Console Plugin Template](https://github.com/openshift/console-plugin-template).
 
-```tsx
-conster Header: React.FC = () => {
-  const { t } = useTranslation('plugin__console-plugin-template');
-  return <h1>{t('Hello, World!')}</h1>;
-};
-```
+---
 
-For labels in `console-extensions.json`, you can use the format
-`%plugin__console-plugin-template~My Label%`. Console will replace the value with
-the message for the current language from the `plugin__console-plugin-template`
-namespace. For example:
-
-```json
-  {
-    "type": "console.navigation/section",
-    "properties": {
-      "id": "admin-demo-section",
-      "perspective": "admin",
-      "name": "%plugin__console-plugin-template~Plugin Template%"
-    }
-  }
-```
-
-Running `yarn i18n` updates the JSON files in the `locales` folder of the
-plugin template when adding or changing messages.
-
-## Linting
-
-This project adds prettier, eslint, and stylelint. Linting can be run with
-`yarn run lint`.
-
-The stylelint config disallows hex colors since these cause problems with dark
-mode (starting in OpenShift console 4.11). You should use the
-[PatternFly global CSS variables](https://patternfly-react-main.surge.sh/developer-resources/global-css-variables#global-css-variables)
-for colors instead.
-
-The stylelint config also disallows naked element selectors like `table` and
-`.pf-` or `.co-` prefixed classes. This prevents plugins from accidentally
-overwriting default console styles, breaking the layout of existing pages. The
-best practice is to prefix your CSS classnames with your plugin name to avoid
-conflicts. Please don't disable these rules without understanding how they can
-break console styles!
-
-## Reporting
-
-Steps to generate reports
-
-1. In command prompt, navigate to root folder and execute the command `yarn run cypress-merge`
-2. Then execute command `yarn run cypress-generate`
-The cypress-report.html file is generated and should be in (/integration-tests/screenshots) directory
-
-## References
-
-- [Console Plugin SDK README](https://github.com/openshift/console/tree/master/frontend/packages/console-dynamic-plugin-sdk)
-- [Customization Plugin Example](https://github.com/spadgett/console-customization-plugin)
-- [Dynamic Plugin Enhancement Proposal](https://github.com/openshift/enhancements/blob/master/enhancements/console/dynamic-plugins.md)
+By integrating Trident Protect directly into the OpenShift Console, this plugin aims to enhance data protection management, making it more accessible and efficient for teams operating within OpenShift environments. 
