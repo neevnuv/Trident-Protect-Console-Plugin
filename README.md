@@ -1,6 +1,6 @@
 # Trident Protect Console Plugin
 
-This plugin enhances the OpenShift Console by integrating NetApp's Trident Protect, facilitating seamless data protection management for container applications and virtual machines (VMs) within OpenShift.
+This plugin simplifies the usage of NetApp's Trident Protect by adding the crutial components to OpenShift's Console, allowing accessing the data protection management CRs easilly.
 
 ## What is Trident Protect?
 
