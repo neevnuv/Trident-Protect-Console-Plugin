@@ -3,18 +3,89 @@
     "type": "console.page/route",
     "properties": {
       "exact": true,
-      "path": "/example",
+      "path": "/trident-protect/applications",
+      "component": { "$codeRef": "ExamplePage" }
+    }
+  },
+  {
+    "type": "console.page/route",
+    "properties": {
+      "exact": true,
+      "path": "/trident-protect/appvaults",
+      "component": { "$codeRef": "ExamplePage" }
+    }
+  },
+  {
+    "type": "console.page/route",
+    "properties": {
+      "exact": true,
+      "path": "/trident-protect/snapshots",
+      "component": { "$codeRef": "ExamplePage" }
+    }
+  },
+  {
+    "type": "console.page/route",
+    "properties": {
+      "exact": true,
+      "path": "/trident-protect/backups",
+      "component": { "$codeRef": "ExamplePage" }
+    }
+  },
+  {
+    "type": "console.page/route",
+    "properties": {
+      "exact": true,
+      "path": "/trident-protect/applications",
       "component": { "$codeRef": "ExamplePage" }
     }
   },
   {
     "type": "console.navigation/href",
     "properties": {
-      "id": "example",
-      "name": "%plugin__console-plugin-template~Plugin Example%",
-      "href": "/example",
+      "id": "trident-protect-applications",
+      "name": "%plugin__console-plugin-template~Applications%",
+      "href": "/trident-protect/applications",
       "perspective": "admin",
-      "section": "home"
+      "section": "trident-protect"
+    }
+  },
+  {
+    "type": "console.navigation/href",
+    "properties": {
+      "id": "trident-protect-appvaults",
+      "name": "%plugin__console-plugin-template~AppVaults%",
+      "href": "/trident-protect/appvaults",
+      "perspective": "admin",
+      "section": "trident-protect"
+    }
+  },
+  {
+    "type": "console.navigation/href",
+    "properties": {
+      "id": "trident-protect-snapshots",
+      "name": "%plugin__console-plugin-template~Snapshots%",
+      "href": "/trident-protect/snapshots",
+      "perspective": "admin",
+      "section": "trident-protect"
+    }
+  },
+  {
+    "type": "console.navigation/href",
+    "properties": {
+      "id": "trident-protect-backups",
+      "name": "%plugin__console-plugin-template~Backups%",
+      "href": "/trident-protect/backups",
+      "perspective": "admin",
+      "section": "trident-protect"
+    }
+  },
+  {
+    "type": "console.navigation/section",
+    "properties": {
+      "id": "trident-protect",
+      "insertAfter": "builds",
+      "perspective": "admin",
+      "name": "Trident Protect"
     }
   }
 ]
