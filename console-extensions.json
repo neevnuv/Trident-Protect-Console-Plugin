@@ -3,7 +3,7 @@
     "type": "console.navigation/section",
     "properties": {
       "id": "trident-protect",
-      "insertAfter": "builds",
+      "insertAfter": "storage",
       "perspective": "admin",
       "name": "Trident Protect"
     }
@@ -12,7 +12,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-appvaults",
-      "name": "%plugin__console-plugin-template~AppVaults%",
+      "name": "%trident-protect-console-plugin~AppVaults%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -34,7 +34,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-applications",
-      "name": "%plugin__console-plugin-template~Applications%",
+      "name": "%trident-protect-console-plugin~Applications%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -48,7 +48,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-appmirrorrelationships",
-      "name": "%plugin__console-plugin-template~AppMirrorRelationship%",
+      "name": "%trident-protect-console-plugin~AppMirrorRelationship%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -62,7 +62,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-schedules",
-      "name": "%plugin__console-plugin-template~Schedules%",
+      "name": "%trident-protect-console-plugin~Schedules%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -84,7 +84,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-backups",
-      "name": "%plugin__console-plugin-template~Backups%",
+      "name": "%trident-protect-console-plugin~Backups%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -98,7 +98,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-backupinplacerestores",
-      "name": "%plugin__console-plugin-template~BackupInplaceRestores%",
+      "name": "%trident-protect-console-plugin~BackupInplaceRestores%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -112,7 +112,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-backuprestores",
-      "name": "%plugin__console-plugin-template~BackupRestores%",
+      "name": "%trident-protect-console-plugin~BackupRestores%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -134,7 +134,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-snapshots",
-      "name": "%plugin__console-plugin-template~Snapshots%",
+      "name": "%trident-protect-console-plugin~Snapshots%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -148,7 +148,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-snapshotsinplacerestores",
-      "name": "%plugin__console-plugin-template~SnapshotInplaceRestores%",
+      "name": "%trident-protect-console-plugin~SnapshotInplaceRestores%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
@@ -162,7 +162,7 @@
     "type": "console.navigation/resource-ns",
     "properties": {
       "id": "trident-protect-snapshotsrestores",
-      "name": "%plugin__console-plugin-template~SnapshotRestores%",
+      "name": "%trident-protect-console-plugin~SnapshotRestores%",
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
