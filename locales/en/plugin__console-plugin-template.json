@@ -1,3 +1,5 @@
 {
+    "console-template-plugin": "console-template-plugin",
+    "exposedModules": "exposedModules",
     "trident-protect-console-plugin": "trident-protect-console-plugin"
 }

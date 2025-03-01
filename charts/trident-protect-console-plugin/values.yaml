@@ -2,7 +2,7 @@
 plugin:
   name: ""
   description: ""
-  image: ""
+  image: "cloudlet.azurecr.io/trident-protect-console-plugin:v0.0.1"
   imagePullPolicy: IfNotPresent
   replicas: 2
   port: 9443
