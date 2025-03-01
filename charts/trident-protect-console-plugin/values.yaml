@@ -2,7 +2,7 @@
 plugin:
   name: "trident-protect-console-plugin"
   description: "A ConsolePlugin for Trident Protect. It allows application data management through Openshift's UI"
-  image: "cloudlet.azurecr.io/trident-protect-console-plugin:v0.0.5"
+  image: "cloudlet.azurecr.io/trident-protect-console-plugin:v0.0.6"
   imagePullPolicy: IfNotPresent
   replicas: 2
   port: 9443
