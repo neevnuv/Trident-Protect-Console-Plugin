@@ -116,7 +116,7 @@
       "model": {
         "group": "protect.trident.netapp.io",
         "version": "v1",
-        "kind": "BackupRestores"
+        "kind": "BackupRestore"
       },
       "perspective": "admin",
       "section": "trident-protect"
